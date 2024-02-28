@@ -1,0 +1,26 @@
+{
+  "name": "api-web-playwright",
+  "version": "1.0.0",
+  "description": "web and api test",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test-headed": "playwright test --headed",
+    "test-ui": "playwright test --ui",
+    "test-report": "playwright show-report"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/debasisj/api-web-playwright.git"
+  },
+  "author": "deb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/debasisj/api-web-playwright/issues"
+  },
+  "homepage": "https://github.com/debasisj/api-web-playwright#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.42.0",
+    "@types/node": "^20.11.21"
+  }
+}
