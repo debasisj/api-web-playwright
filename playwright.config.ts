@@ -1,5 +1,6 @@
 import { defineConfig, devices } from '@playwright/test'
 
+const date = new Date().toLocaleString('en-AU', { hour12: false })
 const _webBaseURL = 'https://phptravels.net'
 const _apiBaseURL = 'https://api.weatherbit.io'
 export const watherbit_api_key = process.env.weatherbitKey
@@ -17,7 +18,16 @@ export default defineConfig({
 
   workers: process.env.CI ? 2 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [['html'], ['list']],
+  reporter: [
+    ['list'],
+    [
+      'monocart-reporter',
+      {
+        name: `QE Regress Test Report for ${date}`,
+        outputFile: 'test-results/report.html',
+      },
+    ],
+  ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     trace: 'on-first-retry',

@@ -21,7 +21,8 @@
   "homepage": "https://github.com/debasisj/api-web-playwright#readme",
   "devDependencies": {
     "@playwright/test": "^1.42.0",
-    "@types/node": "^20.11.21"
+    "@types/node": "^20.11.21",
+    "monocart-reporter": "^2.4.0"
   },
   "dependencies": {
     "@faker-js/faker": "^8.4.1"
