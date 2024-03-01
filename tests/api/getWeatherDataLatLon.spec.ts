@@ -15,7 +15,7 @@ const data = {
   ],
 }
 data.cities.forEach((city) => {
-  test(`Get weather data for ${city.name} based on lattitude and longitude data`, async ({
+  test(`Get weather data for ${city.name} based on latitude and longitude data`, async ({
     request,
   }) => {
     const response = await request.get('/v2.0/current', {

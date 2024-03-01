@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 import { watherbit_api_key } from '../../playwright.config'
-import { compileFunction } from 'vm'
+
 const data = {
   cities: [
     {

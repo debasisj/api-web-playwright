@@ -6,7 +6,7 @@ const data = {
   bookingDetails: [
     {
       name: 'Sydney',
-      noOfadults: 2,
+      noOfAdults: 2,
     },
   ],
 }
@@ -29,18 +29,18 @@ const test = base.extend<{
 
 test.describe('Book a hotel end to end test', () => {
   data.bookingDetails.forEach((bookingDetail) => {
-    test(`hould able to serach for a hotel and a room in ${bookingDetail.name}`, async ({
+    test(`Should able to search for a hotel and a room in ${bookingDetail.name}`, async ({
       searchPage,
       personalInfoPage,
     }) => {
       await searchPage.fillSearchDetailsAndRetrieveHotels(
         bookingDetail.name,
-        bookingDetail.noOfadults
+        bookingDetail.noOfAdults
       )
       await searchPage.selectAHotelFromSearch()
       await searchPage.selectARoom()
-      await personalInfoPage.fillPersonalInformmation()
-      await personalInfoPage.fillTravellerNames(bookingDetail.noOfadults)
+      await personalInfoPage.fillPersonalInformation()
+      await personalInfoPage.fillTravelerNames(bookingDetail.noOfAdults)
       // await personalInfoPage.selectPaymentGateway({ type: 'Stripe' })
       // await personalInfoPage.agreeAndBookConfirm()
       // await personalInfoPage.payForTheBooking()

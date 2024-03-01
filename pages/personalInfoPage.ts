@@ -31,7 +31,7 @@ export class PersonalInfoPage extends BasePage {
     this.proceedBtn = this.page.locator(`input[value='Proceed']`).first()
   }
 
-  async fillPersonalInformmation() {
+  async fillPersonalInformation() {
     await this.firstName.fill(user.firstName)
     await this.lastName.fill(user.lastName)
     await this.email.fill(user.email)
@@ -39,7 +39,7 @@ export class PersonalInfoPage extends BasePage {
     await this.address.fill(user.address)
     //await this.country.selectOption('AU')
   }
-  async fillTravellerNames(num: number) {
+  async fillTravelerNames(num: number) {
     for (let i = 1; i <= num; i++) {
       this.page.locator(`[name=firstname_${i}]`).fill(user.firstName)
       this.page.locator(`[name=lastname_${i}]`).fill(user.lastName)
