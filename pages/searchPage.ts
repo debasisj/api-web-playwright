@@ -1,5 +1,6 @@
 import { expect, Page, Locator } from '@playwright/test'
 import { getAFutureDate } from '../utils'
+import BasePage from './basePage'
 
 export type BookingDetails = {
   city: string
@@ -7,7 +8,7 @@ export type BookingDetails = {
   checkout: string
 }
 
-export class SearchPage {
+export class SearchPage extends BasePage {
   private readonly hotelSearch: Locator
   private readonly serachContainer: Locator
   private readonly searchCityInput: Locator
@@ -20,7 +21,8 @@ export class SearchPage {
   private readonly nationality: Locator
   private readonly serachBtn: Locator
   private readonly cardItem: Locator
-  constructor(public readonly page: Page) {
+  constructor(page: Page) {
+    super(page, '/hotels')
     this.hotelSearch = this.page.locator('#hotels-search')
     this.serachContainer = this.page.getByTitle(' Search by City')
     this.searchCityInput = this.page.locator('.select2-search__field')
@@ -36,13 +38,6 @@ export class SearchPage {
     this.cardItem = this.page.locator('.card--item')
   }
 
-  async goTo() {
-    await this.page.goto('/hotels', {
-      waitUntil: 'load',
-      timeout: 60 * 1000,
-    })
-  }
-
   async ensureHotelSearchLoaded() {
     await expect(this.hotelSearch).toBeVisible()
   }
@@ -51,9 +46,11 @@ export class SearchPage {
     const noOfHotels = await this.cardItem.count()
     return noOfHotels
   }
-  async fillSearchDetailsAndRetrieveHotels(noOfAdults: number) {
+  async fillSearchDetailsAndRetrieveHotels(city: string, noOfAdults: number) {
+    const isHide = await this.page.getByText('Hide').isVisible()
+    if (isHide) await this.page.getByText('Hide').click()
     await this.serachContainer.click()
-    await this.searchCityInput.fill('Sydney')
+    await this.searchCityInput.fill(city)
     await this.page
       .locator('#select2-hotels_city-results')
       .filter({ hasText: 'Sydney' })
@@ -66,8 +63,7 @@ export class SearchPage {
     await this.adults.fill(`${noOfAdults}`)
     await this.childs.fill('0')
     await this.nationality.selectOption('AU')
-    const isHide = await this.page.getByText('Hide').isVisible()
-    if (isHide) await this.page.getByText('Hide').click()
+
     await this.serachBtn.click()
     await expect(this.cardItem.first()).toBeVisible()
     expect(await this.getNoOfSerachResults()).toBeGreaterThan(0)

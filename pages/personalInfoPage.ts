@@ -1,10 +1,11 @@
 import { expect, Page, Locator } from '@playwright/test'
 import { user } from '../utils'
+import BasePage from './basePage'
 
 export interface PaymentGateway {
   type: 'Stripe' | 'Paypal' | 'Bank Transfer'
 }
-export class PersonalInfoPage {
+export class PersonalInfoPage extends BasePage {
   private readonly firstName: Locator
   private readonly lastName: Locator
   private readonly email: Locator
@@ -15,7 +16,8 @@ export class PersonalInfoPage {
   private readonly bookingConfirmBtn: Locator
   private readonly proceedBtn: Locator
 
-  constructor(public readonly page: Page) {
+  constructor(page: Page) {
+    super(page, '')
     this.firstName = this.page.getByPlaceholder('First Name').first()
     this.lastName = this.page.getByPlaceholder('Last Name').first()
     this.email = this.page.getByPlaceholder('Email').first()
