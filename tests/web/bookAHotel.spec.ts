@@ -2,7 +2,14 @@ import { test as base } from '@playwright/test'
 import { SearchPage } from '../../pages/searchPage'
 import { PersonalInfoPage } from '../../pages/personalInfoPage'
 
-const noOfadults = 2
+const data = {
+  bookingDetails: [
+    {
+      name: 'Sydney',
+      noOfadults: 2,
+    },
+  ],
+}
 
 const test = base.extend<{
   searchPage: SearchPage
@@ -10,7 +17,7 @@ const test = base.extend<{
 }>({
   searchPage: async ({ page }, use) => {
     const searchPage = new SearchPage(page)
-    await searchPage.goTo()
+    await searchPage.goTo(searchPage.url)
     await searchPage.ensureHotelSearchLoaded()
     await use(searchPage)
   },
@@ -21,19 +28,22 @@ const test = base.extend<{
 })
 
 test.describe('Book a hotel end to end test', () => {
-  test.describe.configure({ mode: 'serial' })
-
-  test('Should able to serach for a hotel and a room', async ({
-    searchPage,
-    personalInfoPage,
-  }) => {
-    await searchPage.fillSearchDetailsAndRetrieveHotels(noOfadults)
-    await searchPage.selectAHotelFromSearch()
-    await searchPage.selectARoom()
-    await personalInfoPage.fillPersonalInformmation()
-    await personalInfoPage.fillTravellerNames(noOfadults)
-    // await personalInfoPage.selectPaymentGateway({ type: 'Stripe' })
-    // await personalInfoPage.agreeAndBookConfirm()
-    // await personalInfoPage.payForTheBooking()
+  data.bookingDetails.forEach((bookingDetail) => {
+    test(`hould able to serach for a hotel and a room in ${bookingDetail.name}`, async ({
+      searchPage,
+      personalInfoPage,
+    }) => {
+      await searchPage.fillSearchDetailsAndRetrieveHotels(
+        bookingDetail.name,
+        bookingDetail.noOfadults
+      )
+      await searchPage.selectAHotelFromSearch()
+      await searchPage.selectARoom()
+      await personalInfoPage.fillPersonalInformmation()
+      await personalInfoPage.fillTravellerNames(bookingDetail.noOfadults)
+      // await personalInfoPage.selectPaymentGateway({ type: 'Stripe' })
+      // await personalInfoPage.agreeAndBookConfirm()
+      // await personalInfoPage.payForTheBooking()
+    })
   })
 })
