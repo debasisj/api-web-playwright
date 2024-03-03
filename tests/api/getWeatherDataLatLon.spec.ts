@@ -1,5 +1,8 @@
 import { expect, test } from '@playwright/test'
 import { watherbit_api_key } from '../../playwright.config'
+import apiSchema from '../../apiSchema/schema.json'
+import Ajv from 'ajv'
+
 const data = {
   cities: [
     {
@@ -14,6 +17,10 @@ const data = {
     },
   ],
 }
+
+const ajv = new Ajv()
+const validateSchema = ajv.compile(apiSchema)
+
 data.cities.forEach((city) => {
   test(`Get weather data for ${city.name} based on latitude and longitude data`, async ({
     request,
@@ -31,5 +38,9 @@ data.cities.forEach((city) => {
     expect(responseJson.data[0].city_name).toEqual(city.name)
     expect(responseJson.data[0].app_temp).toBeTruthy()
     expect(responseJson.data[0].weather).toBeTruthy()
+
+    //schema validation
+    const schemaValidationResult = validateSchema(responseJson)
+    expect(schemaValidationResult).toBe(true)
   })
 })
