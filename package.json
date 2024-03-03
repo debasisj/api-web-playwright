@@ -25,6 +25,7 @@
     "monocart-reporter": "^2.4.0"
   },
   "dependencies": {
-    "@faker-js/faker": "^8.4.1"
+    "@faker-js/faker": "^8.4.1",
+    "ajv": "^8.12.0"
   }
 }

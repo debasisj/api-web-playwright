@@ -1,0 +1,195 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Generated schema for Root",
+  "type": "object",
+  "properties": {
+    "count": {
+      "type": "number"
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "app_temp": {
+            "type": "number"
+          },
+          "aqi": {
+            "type": "number"
+          },
+          "city_name": {
+            "type": "string"
+          },
+          "clouds": {
+            "type": "number"
+          },
+          "country_code": {
+            "type": "string"
+          },
+          "datetime": {
+            "type": "string"
+          },
+          "dewpt": {
+            "type": "number"
+          },
+          "dhi": {
+            "type": "number"
+          },
+          "dni": {
+            "type": "number"
+          },
+          "elev_angle": {
+            "type": "number"
+          },
+          "ghi": {
+            "type": "number"
+          },
+          "gust": {
+            "type": "number"
+          },
+          "h_angle": {
+            "type": "number"
+          },
+          "lat": {
+            "type": "number"
+          },
+          "lon": {
+            "type": "number"
+          },
+          "ob_time": {
+            "type": "string"
+          },
+          "pod": {
+            "type": "string"
+          },
+          "precip": {
+            "type": "number"
+          },
+          "pres": {
+            "type": "number"
+          },
+          "rh": {
+            "type": "number"
+          },
+          "slp": {
+            "type": "number"
+          },
+          "snow": {
+            "type": "number"
+          },
+          "solar_rad": {
+            "type": "number"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "state_code": {
+            "type": "string"
+          },
+          "station": {
+            "type": "string"
+          },
+          "sunrise": {
+            "type": "string"
+          },
+          "sunset": {
+            "type": "string"
+          },
+          "temp": {
+            "type": "number"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "ts": {
+            "type": "number"
+          },
+          "uv": {
+            "type": "number"
+          },
+          "vis": {
+            "type": "number"
+          },
+          "weather": {
+            "type": "object",
+            "properties": {
+              "description": {
+                "type": "string"
+              },
+              "code": {
+                "type": "number"
+              },
+              "icon": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "description",
+              "code",
+              "icon"
+            ]
+          },
+          "wind_cdir": {
+            "type": "string"
+          },
+          "wind_cdir_full": {
+            "type": "string"
+          },
+          "wind_dir": {
+            "type": "number"
+          },
+          "wind_spd": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "app_temp",
+          "aqi",
+          "city_name",
+          "clouds",
+          "country_code",
+          "datetime",
+          "dewpt",
+          "dhi",
+          "dni",
+          "elev_angle",
+          "ghi",
+          "gust",
+          "h_angle",
+          "lat",
+          "lon",
+          "ob_time",
+          "pod",
+          "precip",
+          "pres",
+          "rh",
+          "slp",
+          "snow",
+          "solar_rad",
+          "sources",
+          "state_code",
+          "station",
+          "sunrise",
+          "sunset",
+          "temp",
+          "timezone",
+          "ts",
+          "uv",
+          "vis",
+          "weather",
+          "wind_cdir",
+          "wind_cdir_full",
+          "wind_dir",
+          "wind_spd"
+        ]
+      }
+    }
+  },
+  "required": [
+    "count",
+    "data"
+  ]
+}
